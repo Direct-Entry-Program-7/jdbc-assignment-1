@@ -22,8 +22,10 @@
       </Label>
       <TextField fx:id="txtName" layoutX="98.0" layoutY="43.0" prefHeight="26.0" prefWidth="483.0" promptText="Enter student name here" AnchorPane.rightAnchor="25.0" />
       <TextField fx:id="txtContact" layoutX="98.0" layoutY="74.0" prefHeight="26.0" prefWidth="483.0" promptText="Enter a contact number and press enter button" AnchorPane.rightAnchor="25.0" />
+       <ComboBox fx:id="cmbProviders" layoutX="98.0" layoutY="109.0" prefHeight="26.0" prefWidth="200.0" />
+       <Button fx:id="btnAdd" layoutX="309.0" layoutY="150.0" mnemonicParsing="false" onAction="#btnAdd_OnAction" prefHeight="26.0" prefWidth="84.0" text="Add" />
       <ListView fx:id="lstContacts" layoutX="98.0" layoutY="150.0" prefHeight="92.0" prefWidth="200.0" />
-      <Button fx:id="btnRemove" layoutX="309.0" layoutY="109.0" mnemonicParsing="false" onAction="#btnRemove_OnAction" prefHeight="26.0" prefWidth="84.0" text="Remove" />
+      <Button fx:id="btnRemove" layoutX="309.0" layoutY="183.0" mnemonicParsing="false" onAction="#btnRemove_OnAction" prefHeight="26.0" prefWidth="84.0" text="Remove" />
       <TableView fx:id="tblStudents" layoutX="25.0" layoutY="260.0" prefHeight="200.0" prefWidth="554.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
         <columns>
           <TableColumn prefWidth="75.0" text="ID" />
@@ -35,6 +37,5 @@
       <Button fx:id="btnSave" layoutX="309.0" layoutY="216.0" mnemonicParsing="false" onAction="#btnSave_OnAction" prefHeight="26.0" prefWidth="84.0" text="Save" />
       <Button fx:id="btnClear" layoutX="519.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnClear_OnAction" prefHeight="26.0" prefWidth="61.0" text="Clear" />
       <Button layoutX="519.0" layoutY="109.0" mnemonicParsing="false" onAction="#btnBack_OnAction" text="Back" />
-      <ComboBox fx:id="cmbProviders" layoutX="98.0" layoutY="109.0" prefHeight="26.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
