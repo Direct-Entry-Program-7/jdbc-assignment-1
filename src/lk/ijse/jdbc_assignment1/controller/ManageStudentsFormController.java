@@ -26,6 +26,7 @@ public class ManageStudentsFormController {
     public ListView<String> lstContacts;
     public Button btnRemove;
     public TableView<StudentTM> tblStudents;
+    public ComboBox<String> cmbProviders;
     private Connection connection;
     private PreparedStatement pstmSaveStudent;
     private PreparedStatement pstmSaveContact;
@@ -120,6 +121,25 @@ public class ManageStudentsFormController {
         }
 
         loadAllStudents();
+        loadAllProviders();
+    }
+
+    private void loadAllProviders(){
+
+        cmbProviders.getItems().clear();
+
+        try {
+            Statement stm = connection.createStatement();
+            ResultSet rst = stm.executeQuery("SELECT * FROM provider");
+
+            while (rst.next()){
+                cmbProviders.getItems().add(rst.getString("provider"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private void loadAllStudents(){
