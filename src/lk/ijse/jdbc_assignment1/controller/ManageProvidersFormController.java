@@ -1,12 +1,10 @@
 package lk.ijse.jdbc_assignment1.controller;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
-import lk.ijse.jdbc_assignment1.tm.ProviderTM;
+import lk.ijse.jdbc_assignment1.model.Provider;
 import lk.ijse.jdbc_assignment1.util.DBConnection;
 
 import java.io.IOException;
@@ -16,7 +14,7 @@ public class ManageProvidersFormController {
     public TextField txtID;
     public TextField txtProvider;
     public Button btnSave;
-    public TableView<ProviderTM> tblProviders;
+    public TableView<Provider> tblProviders;
     private Connection connection;
     private PreparedStatement pstmSaveProvider;
     private PreparedStatement pstmDeleteProvider;
@@ -24,7 +22,7 @@ public class ManageProvidersFormController {
     public void initialize(){
         tblProviders.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
         tblProviders.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
-        TableColumn<ProviderTM, Button> colDelete = (TableColumn<ProviderTM, Button>) tblProviders.getColumns().get(2);
+        TableColumn<Provider, Button> colDelete = (TableColumn<Provider, Button>) tblProviders.getColumns().get(2);
 
         txtProvider.setOnAction(this::btnSave_OnAction);
 
@@ -70,7 +68,7 @@ public class ManageProvidersFormController {
             ResultSet rst = stm.executeQuery("SELECT * FROM provider");
 
             while (rst.next()){
-                tblProviders.getItems().add(new ProviderTM(rst.getInt("id"), rst.getString("provider")));
+                tblProviders.getItems().add(new Provider(rst.getInt("id"), rst.getString("provider")));
             }
 
         } catch (SQLException e) {
@@ -96,7 +94,7 @@ public class ManageProvidersFormController {
             pstmSaveProvider.setString(2, provider);
             if (pstmSaveProvider.executeUpdate() == 1){
                 new Alert(Alert.AlertType.INFORMATION, "Provider has been saved successfully").show();
-                tblProviders.getItems().add(new ProviderTM(Integer.parseInt(txtID.getText()), provider));
+                tblProviders.getItems().add(new Provider(Integer.parseInt(txtID.getText()), provider));
                 txtID.clear();
                 txtProvider.clear();
                 txtID.requestFocus();
