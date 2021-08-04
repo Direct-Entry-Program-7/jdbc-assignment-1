@@ -5,26 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import lk.ijse.jdbc_assignment1.AppInitializer;
 
 import java.io.IOException;
 
 public class HomeFormController {
     public AnchorPane root;
-
-    public enum NavigationMenu {
-        STUDENTS, PROVIDERS, HOME
-    }
-
-    public void btnManageStudents_OnAction(ActionEvent actionEvent) throws IOException {
-        navigate(NavigationMenu.STUDENTS);
-    }
-
-    public void btnManageProviders_OnAction(ActionEvent actionEvent) throws IOException {
-        navigate(NavigationMenu.PROVIDERS);
-    }
 
     public static void navigate(NavigationMenu navigationMenu) throws IOException {
 
@@ -48,5 +34,17 @@ public class HomeFormController {
             AppInitializer.getPrimaryStage().sizeToScene();
             AppInitializer.getPrimaryStage().centerOnScreen();
         });
+    }
+
+    public void btnManageStudents_OnAction(ActionEvent actionEvent) throws IOException {
+        navigate(NavigationMenu.STUDENTS);
+    }
+
+    public void btnManageProviders_OnAction(ActionEvent actionEvent) throws IOException {
+        navigate(NavigationMenu.PROVIDERS);
+    }
+
+    public enum NavigationMenu {
+        STUDENTS, PROVIDERS, HOME
     }
 }
