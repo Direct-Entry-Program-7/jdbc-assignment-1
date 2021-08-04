@@ -1,15 +1,15 @@
-package lk.ijse.jdbc_assignment1.tm;
+package lk.ijse.jdbc_assignment1.model;
 
 import java.io.Serializable;
 
-public class ProviderTM implements Serializable {
+public class Provider implements Serializable {
     private int id;
     private String name;
 
-    public ProviderTM() {
+    public Provider() {
     }
 
-    public ProviderTM(int id, String name) {
+    public Provider(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -28,10 +28,7 @@ public class ProviderTM implements Serializable {
 
     @Override
     public String toString() {
-        return "ProviderTM{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return this.name;
     }
 
     public void setName(String name) {
