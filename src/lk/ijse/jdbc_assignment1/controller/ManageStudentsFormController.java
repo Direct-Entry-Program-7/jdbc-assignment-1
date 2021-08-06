@@ -143,8 +143,10 @@ public class ManageStudentsFormController {
         try {
             Statement stm = connection.createStatement();
             ResultSet rst = stm.
-                    executeQuery("SELECT s.id, s.name, CONCAT(c.contact, '-', p.provider) AS contact FROM student s LEFT OUTER JOIN contact c ON s.id = c.student_id\n" +
-                            "            LEFT OUTER JOIN provider p on c.provider_id = p.id;");
+                    executeQuery("SELECT s.id, s.name, sf_contact_number(c.contact, p.provider) AS contact\n" +
+                            "FROM student s\n" +
+                            "         LEFT OUTER JOIN contact c ON s.id = c.student_id\n" +
+                            "         LEFT OUTER JOIN provider p on c.provider_id = p.id;");
 
             while (rst.next()) {
                 int id = rst.getInt("id");
