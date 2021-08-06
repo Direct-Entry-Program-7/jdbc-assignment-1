@@ -221,7 +221,7 @@ public class ManageStudentsFormController {
             // By default transaction apply (it doesn't buffer anymore)
 
 //            List<String> collect = lstContacts.getItems().stream().map(contactLM -> contactLM.getContact()).collect(Collectors.toList());
-            tblStudents.getItems().add(new StudentTM(generatedKeys.getInt(1), txtName.getText(), lstContacts.getItems().stream().map(contactLM -> contactLM.getContact()).collect(Collectors.toList())));
+            tblStudents.getItems().add(new StudentTM(generatedKeys.getInt(1), txtName.getText(), lstContacts.getItems().stream().map(contactLM -> contactLM.getContact() + "-" + contactLM.getProviderDescription()).collect(Collectors.toList())));
             new Alert(Alert.AlertType.INFORMATION, "Student has been saved successfully").show();
             txtName.clear();
             txtContact.clear();
