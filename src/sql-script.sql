@@ -146,6 +146,28 @@ CALL sf_my_proc();
 SELECT * from provider;
 SELECT * FROM contact;
 
+/* Lexical Order, Logical Order */
+
+-- Lexical Order
+/* SELECT [DISTINCT] FROM JOIN ON WHERE GROUP BY HAVING ORDER BY [ASC | DESC] [LIMIT OFFSET] - MYSQL */
+/* SELECT [DISTINCT] FROM JOIN ON WHERE GROUP BY HAVING ORDER BY [ASC | DESC] [OFFSET FETCH FIRST ROWS] - STANDARD SQL */
+
+/* SELECT TOP [DISTINCT] FROM JOIN ON WHERE GROUP BY HAVING ORDER BY - Microsoft SQL SERVER */
+
+-- Logical Order
+/*
+    FROM <tables>
+    [JOIN(s) <tables> ON <join_condition>]
+    WHERE <condition> (can't use aggregate functions)
+    GROUP BY <column>
+    HAVING <condition> (ca use aggregate functions)
+    SELECT [DISTINCT]
+    ORDER BY <columns> ASC | DESC
+    LIMIT
+*/
+
+SELECT * FROM student INNER JOIN contact C JOIN provider p on p.id = C.provider_id;
+
 SELECT id, provider, COUNT(contact) as contacts, COUNT(DISTINCT student_id) as students
 FROM contact RIGHT OUTER JOIN provider p on contact.provider_id = p.id GROUP BY provider ORDER BY contacts DESC;
 
@@ -153,4 +175,4 @@ SELECT * FROM provider LEFT OUTER JOIN contact c ON provider.id = c.provider_id;
 
 
 SELECT id, provider, COUNT(contact) as contacts, COUNT(DISTINCT student_id) as students FROM provider
-                                                                                                 LEFT OUTER JOIN contact c ON provider.id = c.provider_id GROUP BY provider HAVING COUNT(contact) = 3  ORDER BY contacts DESC;
+            LEFT OUTER JOIN contact c ON provider.id = c.provider_id GROUP BY provider HAVING COUNT(contact) = 3  ORDER BY contacts DESC;
