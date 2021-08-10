@@ -22,6 +22,8 @@ public class ManageProvidersFormController {
     public void initialize(){
         tblProviders.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
         tblProviders.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+        tblProviders.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("contactsCount"));
+        tblProviders.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("studentsCount"));
         TableColumn<Provider, Button> colDelete = (TableColumn<Provider, Button>) tblProviders.getColumns().get(4);
 
         txtProvider.setOnAction(this::btnSave_OnAction);
@@ -65,10 +67,14 @@ public class ManageProvidersFormController {
 
         try {
             Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT * FROM provider");
+            ResultSet rst = stm.executeQuery("SELECT id, provider, COUNT(contact) as contacts, COUNT(DISTINCT student_id) as students\n" +
+                    "FROM contact RIGHT OUTER JOIN provider p on contact.provider_id = p.id GROUP BY provider ORDER BY contacts DESC;");
 
             while (rst.next()){
-                tblProviders.getItems().add(new Provider(rst.getInt("id"), rst.getString("provider")));
+                tblProviders.getItems().add(new Provider(rst.getInt("id"),
+                        rst.getString("provider"),
+                        rst.getInt("contacts"),
+                        rst.getInt("students")));
             }
 
         } catch (SQLException e) {
@@ -94,7 +100,7 @@ public class ManageProvidersFormController {
             pstmSaveProvider.setString(2, provider);
             if (pstmSaveProvider.executeUpdate() == 1){
                 new Alert(Alert.AlertType.INFORMATION, "Provider has been saved successfully").show();
-                tblProviders.getItems().add(new Provider(Integer.parseInt(txtID.getText()), provider));
+                tblProviders.getItems().add(new Provider(Integer.parseInt(txtID.getText()), provider, 0,0));
                 txtID.clear();
                 txtProvider.clear();
                 txtID.requestFocus();

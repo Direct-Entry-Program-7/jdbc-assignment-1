@@ -127,7 +127,7 @@ public class ManageStudentsFormController {
             ResultSet rst = stm.executeQuery("SELECT * FROM provider");
 
             while (rst.next()) {
-                cmbProviders.getItems().add(new Provider(rst.getInt(1), rst.getString(2)));
+                cmbProviders.getItems().add(new Provider(rst.getInt(1), rst.getString(2), 0,0));
             }
         } catch (SQLException e) {
             e.printStackTrace();
