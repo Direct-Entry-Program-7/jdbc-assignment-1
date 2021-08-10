@@ -22,7 +22,7 @@ public class ManageProvidersFormController {
     public void initialize(){
         tblProviders.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
         tblProviders.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
-        TableColumn<Provider, Button> colDelete = (TableColumn<Provider, Button>) tblProviders.getColumns().get(2);
+        TableColumn<Provider, Button> colDelete = (TableColumn<Provider, Button>) tblProviders.getColumns().get(4);
 
         txtProvider.setOnAction(this::btnSave_OnAction);
 

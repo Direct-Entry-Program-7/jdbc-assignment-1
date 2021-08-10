@@ -22,8 +22,10 @@
       <TableView fx:id="tblProviders" layoutX="14.0" layoutY="165.0" prefHeight="215.0" prefWidth="571.0">
         <columns>
           <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="323.0" text="Name" />
-            <TableColumn minWidth="0.0" prefWidth="122.0" text="Delete" />
+          <TableColumn prefWidth="103.0" text="Name" />
+            <TableColumn prefWidth="87.0" text="Students" />
+            <TableColumn prefWidth="105.0" text="Contacts" />
+            <TableColumn minWidth="0.0" prefWidth="169.0" text="Delete" />
         </columns>
       </TableView>
    </children>
